@@ -1,0 +1,193 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Medigo Service Modules (updated)
+
+# MediGo Service Modules - Technical Overview (Updated)
+
+## Consultations Module
+
+Manages both in-office and virtual consultations between healthcare providers and clients. Supports MEDICAL_CENTER organizational providers, OFFICE_SPECIALIST, and VIRTUAL_SPECIALIST individual providers with flexible scheduling, consultation delivery, and follow-up care.
+
+**Key Features:**
+
+- Unified scheduling system for both in-office and virtual consultations
+- Provider-type specific configuration (facilities for medical centers, specialty focus for specialists)
+- Multi-provider organization support with staff assignment
+- Virtual consultation platform with secure video, chat, and file sharing
+- In-office appointment check-in/checkout workflow
+- Waiting room management (virtual and physical)
+- Consultation notes and medical documentation
+- Prescription creation and referral generation
+- Integration with medical records system
+- Post-consultation follow-up scheduling
+
+**Customization Options:**
+
+- Consultation type availability by provider (in-person, virtual, or both)
+- Provider scheduling templates with consultation type specifications
+- Organization-specific staff role assignments and permissions
+- Individual provider specialty configuration and focus areas
+- Consultation duration by specialty and service type
+- Room/resource allocation for in-office appointments
+- Virtual consultation technical requirements and features
+- Cancellation and rescheduling policies with provider-specific rules
+- Custom intake forms and pre-consultation questionnaires
+- Provider-specific pricing models by consultation type
+
+**Role Support:**
+
+- PROVIDER (MEDICAL_CENTER): Organizational settings, staff management, facility configuration
+- PROVIDER (OFFICE_SPECIALIST): Individual in-office consultation configuration
+- PROVIDER (VIRTUAL_SPECIALIST): Individual virtual consultation configuration
+- STAFF: Administrative scheduling, client management, billing
+- CLIENT: Booking, attending, and reviewing consultations
+
+## Pharmacy Module (Updated)
+
+Enables medication search, purchase, and delivery through PHARMACY provider types. Handles prescription verification, order fulfillment, and delivery tracking using COURIER operators for medication delivery.
+
+**Key Features:**
+
+- Medication database and search functionality
+- Prescription verification system (digital and external)
+- Two-step payment process for prescription items
+- Delivery tracking with COURIER operator integration
+- Partial order fulfillment support
+- Integration with consultation prescriptions
+
+**Customization Options:**
+
+- Pharmacy service areas and delivery radius
+- Medication pricing and inventory management
+- Prescription verification requirements
+- COURIER operator assignment rules and delivery fees
+- Multi-location pharmacy inventory pooling
+
+**Role Support:**
+
+- PROVIDER (PHARMACY): Medication inventory, prescription fulfillment, pricing
+- STAFF: Order management, verification processing, customer support
+- OPERATOR (COURIER): Delivery management and tracking
+- CLIENT: Ordering medications and tracking deliveries
+
+## Emergency Module (Updated)
+
+Enables ambulance and emergency medical services through EMERGENCY provider types. Handles emergency service requests, PARAMEDIC operator dispatching, real-time location tracking, and payment processing.
+
+**Key Features:**
+
+- Dynamic pricing based on distance and provider configuration
+- Real-time location tracking for PARAMEDIC operators
+- Operator assignment and availability management
+- Service quality rating system
+- Integrated payment processing
+- Integration with medical facilities for patient handoff
+
+**Customization Options:**
+
+- Provider pricing model (base fee and per-km rates)
+- Service radius and geographical coverage area
+- Operational settings (hours, auto-assignment)
+- Platform commission percentage configuration
+- Emergency service types and specializations
+- Concurrency limits for PARAMEDIC operators
+- Operator dispatch preferences and assignment rules
+- Vehicle type and equipment specifications
+
+**Role Support:**
+
+- PROVIDER (EMERGENCY): Service configuration, operator management, service area
+- STAFF: Request processing, dispatch coordination, billing management
+- OPERATOR (PARAMEDIC): Emergency response, patient care, transportation
+- CLIENT: Requesting emergency services, tracking response
+
+## Homecare Module (Updated)
+
+Enables in-home healthcare services through HOMECARE provider types. Supports scheduling CAREGIVER operators for various home health services, with service delivery tracking and a comprehensive rating system.
+
+**Key Features:**
+
+- Provider configuration and specialty management
+- CAREGIVER operator assignment and tracking
+- Dynamic service scheduling and availability management
+- Client booking with location-based provider search
+- Multi-dimensional service rating system
+- Care plan documentation and tracking
+
+**Customization Options:**
+
+- Provider service offerings and specialties
+- Pricing based on service type and duration
+- CAREGIVER specialization and assignment preferences
+- Availability scheduling with recurring patterns
+- Cancellation policies and refund rules
+- Care plan templates and documentation requirements
+
+**Role Support:**
+
+- PROVIDER (HOMECARE): Service configuration, caregiver management, care plans
+- STAFF: Schedule coordination, client management, service monitoring
+- OPERATOR (CAREGIVER): Service delivery, care documentation, client interaction
+- CLIENT: Booking services, tracking caregiver arrival, rating services
+
+## Laboratory Module (New)
+
+Facilitates diagnostic testing services through LABORATORY provider types. Handles test ordering, sample collection by TECHNICIAN operators, result reporting, and integration with medical records.
+
+**Key Features:**
+
+- Test catalog with detailed descriptions and requirements
+- Sample collection scheduling and tracking
+- Home collection services via TECHNICIAN operators
+- Digital result delivery and archiving
+- Critical result alerting system
+- Integration with medical records and consultation follow-ups
+
+**Customization Options:**
+
+- Test catalog customization and grouping
+- Sample collection protocols and requirements
+- Result reporting templates and formatting
+- TECHNICIAN operator territories and specializations
+- Testing facility locations and service areas
+- Result turnaround time guarantees
+
+**Role Support:**
+- PROVIDER (LABORATORY): Test configuration, result validation, quality control
+- STAFF: Order processing, scheduling, client communication
+- OPERATOR (TECHNICIAN): Sample collection, transportation, processing
+- CLIENT: Ordering tests, sample provision, accessing results
+
+## Medical Records Module (Expediente) (Updated)
+
+Provides secure storage, management, and sharing of patient medical records. Supports document upload, access control, and automatic updates from all service modules.
+
+**Key Features:**
+
+- Digital medical record storage with provider-specific views
+- Document upload and classification
+- Role-based access control and sharing permissions
+- Automatic update from consultation, emergency, homecare, and laboratory modules
+- Time-limited sharing capabilities
+- Digital prescription management
+- Medical history tracking and summarization
+
+**Customization Options:**
+
+- Record categorization and organization schemas
+- Patient access control levels
+- Provider-specific record templates
+- Integration depth with other modules
+- Retention policies and archive rules
+- Export formats and interoperability options
+- Specialty-specific data collection templates
+
+**Role Support:**
+
+- PLATFORM: System-wide configuration, data security policies
+- PROVIDER (ALL TYPES): Record access based on patient relationships
+- STAFF: Record management, access administration, documentation
+- CLIENT: Personal record access, sharing management, document uploads
