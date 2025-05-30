@@ -38,7 +38,7 @@ const getStatusColor = (status: string) => {
     case 'in-progress':
       return 'bg-purple-100 text-purple-800';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-gray-100 text-gray-900';
   }
 };
 
@@ -104,7 +104,7 @@ const NewAppointmentModal = ({ isOpen, onClose, onSave }: { isOpen: boolean; onC
       <div className="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-xl font-semibold">Nueva Cita Médica</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -204,7 +204,7 @@ const NewAppointmentModal = ({ isOpen, onClose, onSave }: { isOpen: boolean; onC
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200"
+              className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
             >
               Cancelar
             </button>
@@ -237,7 +237,7 @@ const AppointmentDetailsModal = ({ appointment, isOpen, onClose }: {
       <div className="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-xl font-semibold">Detalles de la Cita</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -286,7 +286,7 @@ const AppointmentDetailsModal = ({ appointment, isOpen, onClose }: {
             {appointment.notes && (
               <div className="mt-4">
                 <p><strong>Notas:</strong></p>
-                <p className="mt-1 text-gray-600">{appointment.notes}</p>
+                <p className="mt-1 text-gray-700">{appointment.notes}</p>
               </div>
             )}
           </div>
@@ -390,7 +390,7 @@ export default function VisitasPage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Gestión de Visitas</h1>
-              <p className="text-gray-600">Administración de citas y consultas médicas programadas</p>
+              <p className="text-gray-700">Administración de citas y consultas médicas programadas</p>
             </div>
             <button 
               onClick={handleNewAppointment}
@@ -404,22 +404,22 @@ export default function VisitasPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Total Citas Hoy</div>
+              <div className="text-sm text-gray-700 mb-2">Total Citas Hoy</div>
               <div className="text-3xl font-semibold text-gray-900">{totalAppointments}</div>
               <div className="text-sm text-cyan-600">Programadas</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Confirmadas</div>
+              <div className="text-sm text-gray-700 mb-2">Confirmadas</div>
               <div className="text-3xl font-semibold text-gray-900">{confirmedAppointments}</div>
               <div className="text-sm text-green-600">Listas</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Programadas</div>
+              <div className="text-sm text-gray-700 mb-2">Programadas</div>
               <div className="text-3xl font-semibold text-gray-900">{scheduledAppointments}</div>
               <div className="text-sm text-yellow-600">Por confirmar</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Completadas</div>
+              <div className="text-sm text-gray-700 mb-2">Completadas</div>
               <div className="text-3xl font-semibold text-gray-900">{completedAppointments}</div>
               <div className="text-sm text-blue-600">Finalizadas</div>
             </div>
@@ -430,7 +430,7 @@ export default function VisitasPage() {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
               <div className="flex items-center space-x-4">
                 <div className="relative">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
                   <input
                     type="text"
                     placeholder="Buscar citas por paciente o médico..."
@@ -522,26 +522,26 @@ export default function VisitasPage() {
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-3">
                               <div className="flex items-center space-x-2">
-                                <User className="w-4 h-4 text-gray-400" />
-                                <span className="text-gray-600">
+                                <User className="w-4 h-4 text-gray-500" />
+                                <span className="text-gray-700">
                                   Paciente: {patient?.name || 'Desconocido'}
                                 </span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Eye className="w-4 h-4 text-gray-400" />
-                                <span className="text-gray-600">
+                                <Eye className="w-4 h-4 text-gray-500" />
+                                <span className="text-gray-700">
                                   {doctor?.name || 'Desconocido'}
                                 </span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Clock className="w-4 h-4 text-gray-400" />
-                                <span className="text-gray-600">
+                                <Clock className="w-4 h-4 text-gray-500" />
+                                <span className="text-gray-700">
                                   {appointment.time} - {formatDate(appointment.date)}
                                 </span>
                               </div>
                             </div>
 
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-gray-700">
                               <strong>Tipo:</strong> {appointment.type} | 
                               <strong> Motivo:</strong> {appointment.reason || 'Consulta general'}
                             </div>
@@ -573,7 +573,7 @@ export default function VisitasPage() {
                           </button>
                           <button 
                             onClick={() => handleEditAppointment(appointment.id)}
-                            className="px-3 py-1 text-sm text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="px-3 py-1 text-sm text-gray-700 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                           >
                             <Edit className="w-4 h-4 inline mr-1" />
                             Editar
@@ -586,9 +586,9 @@ export default function VisitasPage() {
 
                 {filteredAppointments.length === 0 && (
                   <div className="text-center py-8">
-                    <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <Calendar className="w-12 h-12 text-gray-500 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">No hay citas</h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-700">
                       {selectedStatus === 'all' 
                         ? 'No hay citas programadas para hoy'
                         : `No hay citas ${getStatusText(selectedStatus)} para hoy`

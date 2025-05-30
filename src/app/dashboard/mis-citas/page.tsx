@@ -83,11 +83,11 @@ const getStatusColor = (status: string) => {
     case 'in-progress':
       return 'text-yellow-600 bg-yellow-100'
     case 'completed':
-      return 'text-gray-600 bg-gray-100'
+      return 'text-gray-700 bg-gray-100'
     case 'cancelled':
       return 'text-red-600 bg-red-100'
     default:
-      return 'text-gray-600 bg-gray-100'
+      return 'text-gray-700 bg-gray-100'
   }
 }
 
@@ -140,7 +140,7 @@ export default function MisServiciosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Mis Servicios</h1>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-700">
               Gestiona tus consultas, entregas y servicios programados
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function MisServiciosPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedFilter === 'all'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 Todos
@@ -163,7 +163,7 @@ export default function MisServiciosPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedFilter === 'consultation'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 Consultas
@@ -173,7 +173,7 @@ export default function MisServiciosPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedFilter === 'pharmacy'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 Farmacia
@@ -183,7 +183,7 @@ export default function MisServiciosPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedFilter === 'laboratory'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 Laboratorio
@@ -193,7 +193,7 @@ export default function MisServiciosPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedFilter === 'homecare'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 Domiciliaria
@@ -216,27 +216,27 @@ export default function MisServiciosPage() {
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2 text-sm text-gray-700">
                         <User className="w-4 h-4" />
                         <span>{service.provider}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2 text-sm text-gray-700">
                         <Calendar className="w-4 h-4" />
                         <span>{formatDate(service.date)}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2 text-sm text-gray-700">
                         <Clock className="w-4 h-4" />
                         <span>{service.time}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2 text-sm text-gray-700">
                         <Phone className="w-4 h-4" />
                         <span>{service.phone}</span>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-2 mb-4">
-                      <MapPin className="w-4 h-4 text-gray-400 mt-0.5" />
-                      <div className="text-sm text-gray-600">
+                      <MapPin className="w-4 h-4 text-gray-500 mt-0.5" />
+                      <div className="text-sm text-gray-700">
                         <div className="font-medium">{service.location}</div>
                         <div>{service.address}</div>
                       </div>
@@ -244,8 +244,8 @@ export default function MisServiciosPage() {
 
                     {service.notes && (
                       <div className="flex items-start space-x-2">
-                        <FileText className="w-4 h-4 text-gray-400 mt-0.5" />
-                        <p className="text-sm text-gray-600">{service.notes}</p>
+                        <FileText className="w-4 h-4 text-gray-500 mt-0.5" />
+                        <p className="text-sm text-gray-700">{service.notes}</p>
                       </div>
                     )}
                   </div>
@@ -256,7 +256,7 @@ export default function MisServiciosPage() {
                         <button className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors">
                           Confirmar
                         </button>
-                        <button className="px-4 py-2 bg-gray-200 text-gray-800 text-sm font-medium rounded-md hover:bg-gray-300 transition-colors">
+                        <button className="px-4 py-2 bg-gray-200 text-gray-900 text-sm font-medium rounded-md hover:bg-gray-300 transition-colors">
                           Reprogramar
                         </button>
                         <button className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 transition-colors">
@@ -287,9 +287,9 @@ export default function MisServiciosPage() {
 
           {filteredServices.length === 0 && (
             <div className="text-center py-12">
-              <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <Calendar className="w-12 h-12 text-gray-500 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No tienes servicios programados</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-700 mb-6">
                 Programa tu próxima consulta o servicio de salud
               </p>
               <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors">

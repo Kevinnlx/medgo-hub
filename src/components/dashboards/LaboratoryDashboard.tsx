@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -22,8 +22,13 @@ import {
   Activity,
   Microscope,
   FlaskConical,
-  Beaker
+  Beaker,
+  FileSearch,
+  Download,
+  Upload,
+  TrendingUp
 } from 'lucide-react';
+import ProviderDashboardBase from './ProviderDashboardBase';
 
 const LaboratoryDashboard = () => {
   const {
@@ -111,406 +116,233 @@ const LaboratoryDashboard = () => {
     totalTests: availableTests.length
   };
 
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Laboratory Services</h1>
-          <p className="text-gray-600">Manage diagnostic tests, samples, and results</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="lab" className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            New Order
-          </Button>
-          <Button variant="outline" className="flex items-center gap-2">
-            <TestTube className="h-4 w-4" />
-            Collect Sample
-          </Button>
-        </div>
-      </div>
+  // Datos simulados específicos del laboratorio
+  const laboratoryMetrics = {
+    totalServices: 25,
+    activeServices: 22,
+    totalRevenue: 124680,
+    monthlyRevenue: 28940,
+    rating: 4.8,
+    totalClients: 1456,
+    todayServices: 67,
+    completionRate: 98
+  }
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Orders</p>
-                <p className="text-2xl font-bold">{stats.totalOrders}</p>
-              </div>
-              <FileText className="h-8 w-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
+  // Acciones rápidas específicas para laboratorio
+  const quickActions = [
+    {
+      title: 'Nueva Muestra',
+      description: 'Registrar nueva muestra',
+      icon: <FlaskConical className="h-4 w-4" />,
+      color: 'text-blue-600',
+      onClick: () => console.log('Nueva muestra')
+    },
+    {
+      title: 'Procesar Resultados',
+      description: 'Análisis completados',
+      icon: <FileSearch className="h-4 w-4" />,
+      color: 'text-green-600',
+      onClick: () => console.log('Procesar resultados')
+    },
+    {
+      title: 'Generar Reportes',
+      description: 'Reportes de laboratorio',
+      icon: <Download className="h-4 w-4" />,
+      color: 'text-purple-600',
+      onClick: () => console.log('Generar reportes')
+    },
+    {
+      title: 'Control de Calidad',
+      description: 'Verificar estándares',
+      icon: <CheckCircle className="h-4 w-4" />,
+      color: 'text-orange-600',
+      onClick: () => console.log('Control de calidad')
+    }
+  ]
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Pending</p>
-                <p className="text-2xl font-bold text-orange-600">{stats.pendingOrders}</p>
-              </div>
-              <Clock className="h-8 w-8 text-orange-600" />
-            </div>
-          </CardContent>
-        </Card>
+  // Actividad reciente específica
+  const recentActivity = [
+    {
+      id: '1',
+      title: 'Análisis completado',
+      description: 'Hemograma completo para María López - Resultados normales',
+      timestamp: '2024-01-15T14:30:00Z',
+      type: 'service' as const,
+      icon: <FlaskConical className="h-4 w-4" />
+    },
+    {
+      id: '2',
+      title: 'Muestra procesada',
+      description: 'Química sanguínea - Juan Martínez',
+      timestamp: '2024-01-15T13:45:00Z',
+      type: 'service' as const,
+      icon: <Activity className="h-4 w-4" />
+    },
+    {
+      id: '3',
+      title: 'Pago procesado',
+      description: 'Perfil lipídico - $85.00',
+      timestamp: '2024-01-15T12:20:00Z',
+      type: 'payment' as const,
+      icon: <CheckCircle className="h-4 w-4" />
+    },
+    {
+      id: '4',
+      title: 'Equipo mantenimiento',
+      description: 'Analizador hematológico calibrado',
+      timestamp: '2024-01-15T11:10:00Z',
+      type: 'alert' as const,
+      icon: <AlertTriangle className="h-4 w-4" />
+    }
+  ]
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Completed</p>
-                <p className="text-2xl font-bold text-green-600">{stats.completedOrders}</p>
-              </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Urgent</p>
-                <p className="text-2xl font-bold text-red-600">{stats.urgentOrders}</p>
-              </div>
-              <AlertTriangle className="h-8 w-8 text-red-600" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Available Techs</p>
-                <p className="text-2xl font-bold text-purple-600">{stats.availableTechnicians}</p>
-              </div>
-              <User className="h-8 w-8 text-purple-600" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Available Tests</p>
-                <p className="text-2xl font-bold text-indigo-600">{stats.totalTests}</p>
-              </div>
-              <Microscope className="h-8 w-8 text-indigo-600" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Main Content */}
-      <Tabs defaultValue="orders" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="orders">Lab Orders</TabsTrigger>
-          <TabsTrigger value="tests">Available Tests</TabsTrigger>
-          <TabsTrigger value="technicians">Technicians</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="orders" className="space-y-4">
-          {/* Filters */}
+  // Tabs personalizados para laboratorio
+  const customTabs = [
+    {
+      id: 'samples',
+      label: 'Muestras',
+      content: (
+        <div className="space-y-6">
+          {/* Muestras en proceso */}
           <Card>
-            <CardContent className="p-4">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Input
-                      placeholder="Search orders..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                </div>
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Status</option>
-                  <option value="ordered">Ordered</option>
-                  <option value="collected">Collected</option>
-                  <option value="processing">Processing</option>
-                  <option value="completed">Completed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
-                <select
-                  value={priorityFilter}
-                  onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Priority</option>
-                  <option value="urgent">Urgent</option>
-                  <option value="high">High</option>
-                  <option value="normal">Normal</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Orders List */}
-          <div className="grid gap-4">
-            {filteredOrders.map((order) => (
-              <Card key={order.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        {getSampleTypeIcon(order.sampleType || 'blood')}
-                        <h3 className="font-semibold text-lg">Order #{order.id}</h3>
-                        <Badge className={getStatusColor(order.status)}>
-                          {order.status}
-                        </Badge>
-                        <Badge className={getPriorityColor(order.priority || 'normal')}>
-                          {order.priority}
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <FlaskConical className="h-5 w-5 mr-2 text-blue-600" />
+                Muestras en Proceso
+              </CardTitle>
+              <CardDescription>
+                Estado actual de análisis en laboratorio
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {[
+                  {
+                    id: 'LAB-001',
+                    patient: 'María González',
+                    doctor: 'Dr. Pérez',
+                    testType: 'Hemograma Completo',
+                    priority: 'normal',
+                    status: 'processing',
+                    receivedAt: '2024-01-15T08:30:00Z',
+                    estimatedTime: '2 horas'
+                  },
+                  {
+                    id: 'LAB-002',
+                    patient: 'Juan Martínez',
+                    doctor: 'Dra. García',
+                    testType: 'Química Sanguínea',
+                    priority: 'urgent',
+                    status: 'pending',
+                    receivedAt: '2024-01-15T09:15:00Z',
+                    estimatedTime: '1 hora'
+                  },
+                  {
+                    id: 'LAB-003',
+                    patient: 'Ana López',
+                    doctor: 'Dr. Rodríguez',
+                    testType: 'Perfil Lipídico',
+                    priority: 'normal',
+                    status: 'completed',
+                    receivedAt: '2024-01-15T07:45:00Z',
+                    estimatedTime: 'Completado'
+                  }
+                ].map((sample, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div className="flex items-center space-x-4">
+                      <div className="text-center">
+                        <div className="font-bold text-sm">{sample.id}</div>
+                        <Badge className={
+                          sample.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                          sample.priority === 'high' ? 'bg-orange-100 text-orange-800' :
+                          'bg-blue-100 text-blue-800'
+                        } variant="secondary">
+                          {sample.priority === 'urgent' ? 'Urgente' :
+                           sample.priority === 'high' ? 'Alta' :
+                           'Normal'}
                         </Badge>
                       </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600 mb-3">
-                        <div className="flex items-center gap-2">
-                          <TestTube className="h-4 w-4" />
-                          <span>{order.sampleType} sample</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span>Ordered: {formatDate(order.createdAt)}</span>
-                        </div>
-                        {order.collectionDate && (
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4" />
-                            <span>Collected: {formatDate(order.collectionDate)}</span>
-                          </div>
-                        )}
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">{formatCurrency(order.cost || 0)}</span>
-                        </div>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-gray-900">{sample.patient}</h4>
+                        <p className="text-sm text-gray-800">{sample.testType}</p>
+                        <p className="text-xs text-gray-700">
+                          Solicitado por {sample.doctor} • {sample.estimatedTime}
+                        </p>
                       </div>
-
-                      <div className="mb-3">
-                        <span className="font-medium text-sm">Tests:</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {order.tests.map((orderTest, index) => {
-                            const test = availableTests.find(t => t.id === orderTest.testId);
-                            return (
-                              <Badge key={index} variant="outline">
-                                {test?.name || orderTest.testName}
-                              </Badge>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {order.notes && (
-                        <div className="p-3 bg-gray-50 rounded-md">
-                          <p className="text-sm text-gray-700">
-                            <strong>Notes:</strong> {order.notes}
-                          </p>
-                        </div>
-                      )}
-
-                      {order.results && order.results.length > 0 && (
-                        <div className="mt-3 p-3 bg-green-50 rounded-md">
-                          <p className="text-sm font-medium text-green-800 mb-2">Results Available:</p>
-                          <div className="space-y-1">
-                            {order.results.map((result, index) => (
-                              <div key={index} className="text-sm text-green-700">
-                                <strong>{result.testName}:</strong> {result.value} {result.unit}
-                                {result.normalRange && (
-                                  <span className="text-gray-600"> (Normal: {result.normalRange})</span>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </div>
-
-                    <div className="flex flex-col gap-2 ml-4">
-                      {order.status === 'ordered' && (
-                        <>
-                          <Button
-                            size="sm"
-                            onClick={() => handleSampleCollection(order.id)}
-                            className="whitespace-nowrap"
-                          >
-                            Collect Sample
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => handleStatusChange(order.id, 'cancelled')}
-                            className="whitespace-nowrap"
-                          >
-                            Cancel
-                          </Button>
-                        </>
-                      )}
-                      
-                      {order.status === 'collected' && (
-                        <Button
-                          size="sm"
-                          variant="lab"
-                          onClick={() => handleStatusChange(order.id, 'processing')}
-                          className="whitespace-nowrap"
-                        >
-                          Start Processing
-                        </Button>
-                      )}
-
-                      {order.status === 'processing' && (
-                        <Button
-                          size="sm"
-                          variant="lab"
-                          onClick={() => handleStatusChange(order.id, 'completed')}
-                          className="whitespace-nowrap"
-                        >
-                          Add Results
-                        </Button>
-                      )}
-
-                      <Button size="sm" variant="ghost" className="whitespace-nowrap">
-                        View Details
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
-
-        <TabsContent value="tests" className="space-y-4">
-          {/* Test Search */}
-          <Card>
-            <CardContent className="p-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Search available tests..."
-                  value={testSearchTerm}
-                  onChange={(e) => setTestSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tests Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredTests.map((test) => (
-              <Card key={test.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg mb-1">{test.name}</h3>
-                      <Badge variant="outline" className="text-xs mb-2">
-                        {test.category}
+                    <div className="flex items-center space-x-3">
+                      <Badge className={
+                        sample.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                        sample.status === 'processing' ? 'bg-blue-100 text-blue-800' :
+                        'bg-green-100 text-green-800'
+                      }>
+                        {sample.status === 'pending' ? 'Pendiente' :
+                         sample.status === 'processing' ? 'Procesando' :
+                         'Completado'}
                       </Badge>
-                      <p className="text-sm text-gray-600 mb-3">{test.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Price:</span>
-                      <span className="font-medium">{formatCurrency(test.price)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Duration:</span>
-                      <span>{test.duration}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Sample:</span>
-                      <span>{test.sampleType}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4">
-                    <Button size="sm" variant="lab" className="w-full">
-                      Add to Order
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
-
-        <TabsContent value="technicians" className="space-y-4">
-          <div className="grid gap-4">
-            {technicians.map((technician) => (
-              <Card key={technician.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <User className="h-5 w-5 text-purple-600" />
-                        <h3 className="font-semibold text-lg">{technician.name}</h3>
-                        <Badge className={technician.availability ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                          {technician.availability ? 'Available' : 'Busy'}
-                        </Badge>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
-                        <div>
-                          <span className="font-medium">Experience:</span> {technician.experience} years
-                        </div>
-                        <div>
-                          <span className="font-medium">Certifications:</span> {technician.certifications?.length || 0}
-                        </div>
-                        <div>
-                          <span className="font-medium">Completed Tests:</span> {technician.completedTests}
-                        </div>
-                      </div>
-
-                      <div className="mt-3">
-                        <span className="font-medium text-sm">Specializations:</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {technician.specializations.map((spec, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
-                              {spec}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mt-3">
-                        <span className="font-medium text-sm">Certifications:</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {technician.certifications?.map((cert, index) => (
-                            <Badge key={index} variant="outline" className="text-xs bg-blue-50 text-blue-700">
-                              {cert}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-2 ml-4">
-                      <Button size="sm" variant="outline">
-                        View Profile
-                      </Button>
-                      <Button size="sm" variant="lab">
-                        Assign Order
+                      <Button variant="outline" size="sm">
+                        {sample.status === 'completed' ? 'Ver Resultado' : 'Actualizar'}
                       </Button>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Estadísticas de análisis */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-gray-900">Análisis Hoy</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-gray-900">67</div>
+                <p className="text-xs text-green-600">+12 vs ayer</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-gray-900">Tiempo Promedio</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-gray-900">2.5 hrs</div>
+                <p className="text-xs text-gray-800">por análisis</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-gray-900">En Proceso</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-gray-900">15</div>
+                <p className="text-xs text-orange-600">3 urgentes</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-gray-900">Precisión</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-gray-900">99.2%</div>
+                <p className="text-xs text-green-600">control de calidad</p>
+              </CardContent>
+            </Card>
           </div>
-        </TabsContent>
-      </Tabs>
-    </div>
+        </div>
+      )
+    }
+  ]
+
+  return (
+    <ProviderDashboardBase
+      providerType="Laboratorio Clínico"
+      providerName="Laboratorio Diagnóstico Plus"
+      metrics={laboratoryMetrics}
+      quickActions={quickActions}
+      recentActivity={recentActivity}
+      customTabs={customTabs}
+    />
   );
 };
 

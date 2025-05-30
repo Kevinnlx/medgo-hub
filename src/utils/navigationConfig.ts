@@ -5,40 +5,192 @@ export interface NavigationItem {
   href: string
   icon: string
   description: string
-  requiredPermissions?: string[]
-  requiredRoles?: UserRole[]
   allowedRoles?: UserRole[]
+  requiredRoles?: UserRole[]
+  requiredPermissions?: string[]
   requiredStaffTypes?: StaffType[]
   requiredProviderTypes?: ProviderType[]
   requiredParentEntityTypes?: ParentEntityType[]
 }
 
-export const navigationItems: NavigationItem[] = [
+// Navegación completa para PLATFORM
+export const platformNavigationItems: NavigationItem[] = [
+  // INICIO
   {
     title: 'Inicio',
     href: '/dashboard',
     icon: 'Home',
     description: 'Panel principal del sistema',
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF']
+    allowedRoles: ['PLATFORM']
   },
+
+  // SERVICIOS MÉDICOS
   {
     title: 'Consultas',
     href: '/dashboard/consultas',
     icon: 'Video',
-    description: 'Gestión de consultas médicas presenciales y virtuales',
-    requiredPermissions: ['consultations_manage', 'appointments_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
-    requiredProviderTypes: ['MEDICAL_CENTER', 'OFFICE_SPECIALIST', 'VIRTUAL_SPECIALIST']
+    description: 'Gestión de consultas médicas',
+    allowedRoles: ['PLATFORM']
   },
   {
     title: 'Pacientes',
     href: '/dashboard/pacientes',
     icon: 'Users',
-    description: 'Gestión de pacientes registrados',
-    requiredPermissions: ['patients_read', 'patients_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
+    description: 'Registro y gestión de pacientes',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Expedientes',
+    href: '/dashboard/expedientes',
+    icon: 'FileText',
+    description: 'Gestión de expedientes médicos',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Médicos',
+    href: '/dashboard/medicos',
+    icon: 'UserCog',
+    description: 'Gestión de profesionales médicos',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Departamentos',
+    href: '/dashboard/departamentos',
+    icon: 'Building2',
+    description: 'Organización departamental',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Registros',
+    href: '/dashboard/registros',
+    icon: 'FileText',
+    description: 'Registros médicos y archivos',
+    allowedRoles: ['PLATFORM']
+  },
+
+  // SERVICIOS ESPECIALIZADOS
+  {
+    title: 'Farmacia',
+    href: '/dashboard/farmacia',
+    icon: 'Pill',
+    description: 'Gestión de medicamentos y prescripciones',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Laboratorio',
+    href: '/dashboard/laboratorio',
+    icon: 'TestTube',
+    description: 'Gestión de pruebas diagnósticas',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Emergencias',
+    href: '/dashboard/emergencias',
+    icon: 'Ambulance',
+    description: 'Servicios de emergencias médicas',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Cuidado Domiciliario',
+    href: '/dashboard/homecare',
+    icon: 'HeartHandshake',
+    description: 'Servicios de salud a domicilio',
+    allowedRoles: ['PLATFORM']
+  },
+
+  // GESTIÓN Y ADMINISTRACIÓN
+  {
+    title: 'Usuarios',
+    href: '/dashboard/usuarios',
+    icon: 'Users',
+    description: 'Gestión de usuarios del sistema',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Proveedores',
+    href: '/dashboard/proveedores',
+    icon: 'Building2',
+    description: 'Gestión de proveedores de servicios',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Personal',
+    href: '/dashboard/personal',
+    icon: 'UserCog',
+    description: 'Gestión de staff y personal',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Facturación',
+    href: '/dashboard/facturacion',
+    icon: 'CreditCard',
+    description: 'Sistema de facturación',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Finanzas',
+    href: '/dashboard/finanzas',
+    icon: 'CreditCard',
+    description: 'Gestión financiera y reportes',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Soporte',
+    href: '/dashboard/soporte',
+    icon: 'HeartHandshake',
+    description: 'Atención al cliente y soporte técnico',
+    allowedRoles: ['PLATFORM']
+  },
+
+  // REPORTES Y CONFIGURACIÓN
+  {
+    title: 'Reportes',
+    href: '/dashboard/reportes',
+    icon: 'BarChart3',
+    description: 'Reportes y analíticas',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Configuración',
+    href: '/dashboard/configuracion',
+    icon: 'Settings',
+    description: 'Configuración del sistema',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Historiales',
+    href: '/dashboard/historiales',
+    icon: 'Activity',
+    description: 'Historiales de actividad',
+    allowedRoles: ['PLATFORM']
+  },
+  {
+    title: 'Visitas',
+    href: '/dashboard/visitas',
+    icon: 'Calendar',
+    description: 'Registro de visitas',
+    allowedRoles: ['PLATFORM']
+  }
+]
+
+// Navegación simplificada: Solo Inicio, Módulo específico, Expedientes (cuando aplique) y Configuración
+export const navigationItems: NavigationItem[] = [
+  // INICIO - Siempre presente para todos los roles
+  {
+    title: 'Inicio',
+    href: '/dashboard',
+    icon: 'Home',
+    description: 'Panel principal del sistema',
+    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF', 'CLIENT']
+  },
+
+  // MÓDULOS ESPECÍFICOS PARA PROVIDERS
+  {
+    title: 'Consultas',
+    href: '/dashboard/consultas',
+    icon: 'Video',
+    description: 'Gestión de consultas médicas',
+    allowedRoles: ['PROVIDER'],
     requiredProviderTypes: ['MEDICAL_CENTER', 'OFFICE_SPECIALIST', 'VIRTUAL_SPECIALIST']
   },
   {
@@ -46,123 +198,73 @@ export const navigationItems: NavigationItem[] = [
     href: '/dashboard/farmacia',
     icon: 'Pill',
     description: 'Gestión de medicamentos y prescripciones',
-    requiredPermissions: ['prescriptions_manage', 'inventory_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
-    requiredProviderTypes: ['PHARMACY', 'MEDICAL_CENTER']
+    allowedRoles: ['PROVIDER'],
+    requiredProviderTypes: ['PHARMACY']
   },
   {
     title: 'Laboratorio',
     href: '/dashboard/laboratorio',
     icon: 'TestTube',
-    description: 'Gestión de pruebas diagnósticas y resultados',
-    requiredPermissions: ['samples_collect', 'medical_records_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
-    requiredProviderTypes: ['LABORATORY', 'MEDICAL_CENTER']
+    description: 'Gestión de pruebas diagnósticas',
+    allowedRoles: ['PROVIDER'],
+    requiredProviderTypes: ['LABORATORY']
   },
   {
     title: 'Emergencias',
     href: '/dashboard/emergencias',
     icon: 'Ambulance',
-    description: 'Servicios de ambulancia y emergencias médicas',
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF']
-  },
-  {
-    title: 'Atención Domiciliaria',
-    href: '/dashboard/domiciliaria',
-    icon: 'Home',
-    description: 'Servicios de salud a domicilio',
-    requiredPermissions: ['service_delivery', 'appointments_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
-    requiredProviderTypes: ['HOMECARE', 'MEDICAL_CENTER']
-  },
-  {
-    title: 'Expedientes Médicos',
-    href: '/dashboard/expedientes',
-    icon: 'FileText',
-    description: 'Gestión de historiales médicos (legacy)',
-    requiredPermissions: ['medical_records_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT']
-  },
-  {
-    title: 'Facturación',
-    href: '/dashboard/facturacion',
-    icon: 'CreditCard',
-    description: 'Gestión de facturación y pagos',
-    requiredPermissions: ['billing_manage'],
-    allowedRoles: ['PLATFORM', 'STAFF'],
-    requiredStaffTypes: ['FINANCE']
-  },
-  {
-    title: 'Finanzas',
-    href: '/dashboard/finanzas',
-    icon: 'CreditCard',
-    description: 'Gestión financiera y reportes',
-    requiredPermissions: ['financial_reports', 'billing_manage'],
-    allowedRoles: ['PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['FINANCE']
-  },
-  {
-    title: 'Usuarios',
-    href: '/dashboard/usuarios',
-    icon: 'UserCog',
-    description: 'Administración de usuarios del sistema',
-    requiredRoles: ['PLATFORM']
-  },
-  {
-    title: 'Proveedores',
-    href: '/dashboard/proveedores',
-    icon: 'UserCog',
-    description: 'Gestión y verificación de proveedores de la plataforma',
-    requiredRoles: ['PLATFORM'],
-    requiredPermissions: ['providers_manage']
-  },
-  {
-    title: 'Personal',
-    href: '/dashboard/personal',
-    icon: 'UserCog',
-    description: 'Gestión de personal y operadores',
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF']
-  },
-  {
-    title: 'Reportes',
-    href: '/dashboard/reportes',
-    icon: 'BarChart3',
-    description: 'Reportes y estadísticas del sistema',
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF']
-  },
-  {
-    title: 'Configuración',
-    href: '/dashboard/configuracion',
-    icon: 'UserCog',
-    description: 'Configuración del perfil y organización',
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF']
+    description: 'Servicios de emergencias médicas',
+    allowedRoles: ['PROVIDER'],
+    requiredProviderTypes: ['EMERGENCY']
   },
   {
     title: 'Cuidado Domiciliario',
     href: '/dashboard/homecare',
     icon: 'HeartHandshake',
     description: 'Servicios de salud a domicilio',
-    requiredPermissions: ['service_delivery', 'appointments_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
-    requiredStaffTypes: ['SUPPORT'],
-    requiredProviderTypes: ['HOMECARE', 'MEDICAL_CENTER']
+    allowedRoles: ['PROVIDER'],
+    requiredProviderTypes: ['HOMECARE']
+  },
+
+  // MÓDULOS ESPECÍFICOS PARA STAFF
+  {
+    title: 'Finanzas',
+    href: '/dashboard/finanzas',
+    icon: 'CreditCard',
+    description: 'Gestión financiera y reportes',
+    allowedRoles: ['STAFF'],
+    requiredStaffTypes: ['FINANCE']
   },
   {
-    title: 'Registros Médicos',
-    href: '/dashboard/registros',
-    icon: 'FileText',
-    description: 'Gestión segura de registros médicos',
-    requiredPermissions: ['medical_records_manage'],
-    allowedRoles: ['PLATFORM', 'PROVIDER', 'STAFF'],
+    title: 'Soporte',
+    href: '/dashboard/soporte',
+    icon: 'HeartHandshake',
+    description: 'Atención al cliente y soporte técnico',
+    allowedRoles: ['STAFF'],
     requiredStaffTypes: ['SUPPORT']
+  },
+
+  // EXPEDIENTES - Solo para providers que manejan registros médicos
+  {
+    title: 'Expedientes',
+    href: '/dashboard/expedientes',
+    icon: 'FileText',
+    description: 'Gestión de expedientes médicos',
+    allowedRoles: ['PROVIDER'],
+    requiredProviderTypes: ['MEDICAL_CENTER', 'OFFICE_SPECIALIST', 'VIRTUAL_SPECIALIST']
+  },
+
+  // CONFIGURACIÓN - Siempre presente para PROVIDER y STAFF
+  {
+    title: 'Configuración',
+    href: '/dashboard/configuracion',
+    icon: 'Settings',
+    description: 'Configuración del perfil y organización',
+    allowedRoles: ['PROVIDER', 'STAFF']
   }
 ]
 
-// Función helper para filtrar navegación según usuario
+// Función helper simplificada para filtrar navegación según usuario
 export const getFilteredNavigation = (
   userRole: UserRole, 
   userPermissions: string[],
@@ -171,48 +273,41 @@ export const getFilteredNavigation = (
   parentEntityType?: ParentEntityType,
   verificationStatus?: string
 ): NavigationItem[] => {
-  return navigationItems.filter(item => {
-    // Si tiene permisos 'all', puede acceder a todo
-    if (userPermissions.includes('all')) {
-      return true
-    }
+  // Para PLATFORM, usar navegación completa
+  if (userRole === 'PLATFORM') {
+    return platformNavigationItems
+  }
 
+  return navigationItems.filter(item => {
     // Verificar roles permitidos
     if (item.allowedRoles && !item.allowedRoles.includes(userRole)) {
       return false
     }
 
-    // Verificar roles requeridos
+    // Verificar roles requeridos específicos
     if (item.requiredRoles && !item.requiredRoles.includes(userRole)) {
       return false
     }
 
-    // Verificar tipos de staff requeridos
+    // Verificar tipos de staff requeridos (solo aplicar para STAFF)
     if (item.requiredStaffTypes && userRole === 'STAFF') {
       if (!staffType || !item.requiredStaffTypes.includes(staffType)) {
         return false
       }
     }
 
-    // Verificar tipos de provider requeridos
+    // Verificar tipos de provider requeridos (solo aplicar para PROVIDER)
     if (item.requiredProviderTypes && userRole === 'PROVIDER') {
       if (!providerType || !item.requiredProviderTypes.includes(providerType)) {
         return false
       }
     }
 
-    // Verificar tipos de entidad padre requeridos
+    // Verificar tipos de entidad padre requeridos (solo aplicar para STAFF)
     if (item.requiredParentEntityTypes && userRole === 'STAFF') {
       if (!parentEntityType || !item.requiredParentEntityTypes.includes(parentEntityType)) {
         return false
       }
-    }
-
-    // Verificar permisos requeridos
-    if (item.requiredPermissions) {
-      return item.requiredPermissions.some(permission => 
-        userPermissions.includes(permission)
-      )
     }
 
     return true

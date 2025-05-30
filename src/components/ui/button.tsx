@@ -9,23 +9,23 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary-600 text-white hover:bg-primary-700",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-red-600 text-white hover:bg-red-700",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-primary-200 bg-white text-black hover:bg-primary-50 hover:text-black",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        success: "bg-green-600 text-white hover:bg-green-700",
-        warning: "bg-yellow-600 text-white hover:bg-yellow-700",
-        info: "bg-blue-600 text-white hover:bg-blue-700",
+          "bg-primary-100 text-primary-800 hover:bg-primary-200",
+        ghost: "text-black hover:bg-primary-50 hover:text-black",
+        link: "text-primary-600 underline-offset-4 hover:underline",
+        success: "bg-primary-600 text-white hover:bg-primary-700",
+        warning: "bg-accent-500 text-white hover:bg-accent-600",
+        info: "bg-primary-500 text-white hover:bg-primary-600",
         emergency: "bg-red-600 text-white hover:bg-red-700 animate-pulse",
-        medical: "bg-emerald-600 text-white hover:bg-emerald-700",
-        pharmacy: "bg-purple-600 text-white hover:bg-purple-700",
-        lab: "bg-indigo-600 text-white hover:bg-indigo-700",
-        homecare: "bg-teal-600 text-white hover:bg-teal-700"
+        medical: "bg-primary-600 text-white hover:bg-primary-700",
+        pharmacy: "bg-accent-600 text-white hover:bg-accent-700",
+        lab: "bg-primary-500 text-white hover:bg-primary-600",
+        homecare: "bg-accent-600 text-white hover:bg-accent-700"
       },
       size: {
         default: "h-10 px-4 py-2",

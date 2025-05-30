@@ -122,7 +122,7 @@ export default function ExpedientesPage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Expedientes Médicos</h1>
-              <p className="text-gray-600">Gestión centralizada de historiales médicos y documentación clínica</p>
+              <p className="text-gray-700">Gestión centralizada de historiales médicos y documentación clínica</p>
             </div>
             <button 
               onClick={handleNewRecord}
@@ -145,27 +145,27 @@ export default function ExpedientesPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Total Expedientes</div>
+              <div className="text-sm text-gray-700 mb-2">Total Expedientes</div>
               <div className="text-3xl font-semibold text-gray-900">{totalRecords}</div>
               <div className="text-sm text-cyan-600">En sistema</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Expedientes Activos</div>
+              <div className="text-sm text-gray-700 mb-2">Expedientes Activos</div>
               <div className="text-3xl font-semibold text-gray-900">{activeRecords}</div>
               <div className="text-sm text-green-600">En seguimiento</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Entradas Totales</div>
+              <div className="text-sm text-gray-700 mb-2">Entradas Totales</div>
               <div className="text-3xl font-semibold text-gray-900">{totalEntries}</div>
               <div className="text-sm text-purple-600">Registros médicos</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Alta Confidencialidad</div>
+              <div className="text-sm text-gray-700 mb-2">Alta Confidencialidad</div>
               <div className="text-3xl font-semibold text-gray-900">{highConfidentialityRecords}</div>
               <div className="text-sm text-red-600">Acceso restringido</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Actualizados (7d)</div>
+              <div className="text-sm text-gray-700 mb-2">Actualizados (7d)</div>
               <div className="text-3xl font-semibold text-gray-900">{recentlyUpdated}</div>
               <div className="text-sm text-orange-600">Recientes</div>
             </div>
@@ -176,7 +176,7 @@ export default function ExpedientesPage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
               <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
                 <div className="relative">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
                   <input
                     type="text"
                     placeholder="Buscar por paciente, ID o médico..."
@@ -221,7 +221,7 @@ export default function ExpedientesPage() {
 
           {/* Results Summary */}
           <div className="mb-6">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-700">
               Mostrando {filteredRecords.length} de {totalRecords} expedientes médicos
             </p>
           </div>
@@ -244,9 +244,9 @@ export default function ExpedientesPage() {
               ))
             ) : (
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-                <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <FileText className="w-12 h-12 text-gray-500 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron expedientes</h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-700 mb-6">
                   {searchTerm || selectedStatus !== 'all' || selectedConfidentiality !== 'all'
                     ? 'Intenta ajustar los filtros de búsqueda'
                     : 'No hay expedientes médicos registrados'}

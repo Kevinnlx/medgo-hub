@@ -237,7 +237,7 @@ export default function PacientesPage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Gestión de Pacientes</h1>
-              <p className="text-gray-600">Administra la información de todos los pacientes registrados</p>
+              <p className="text-gray-700">Administra la información de todos los pacientes registrados</p>
             </div>
             <button 
               onClick={() => setShowNewModal(true)}
@@ -251,26 +251,26 @@ export default function PacientesPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Total Pacientes</div>
+              <div className="text-sm text-gray-700 mb-2">Total Pacientes</div>
               <div className="text-3xl font-semibold text-gray-900">{patients.length}</div>
               <div className="text-sm text-blue-600">Registrados</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Con Alergias</div>
+              <div className="text-sm text-gray-700 mb-2">Con Alergias</div>
               <div className="text-3xl font-semibold text-gray-900">
                 {patients.filter(p => p.allergies.length > 0).length}
               </div>
               <div className="text-sm text-yellow-600">Pacientes</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Condiciones Crónicas</div>
+              <div className="text-sm text-gray-700 mb-2">Condiciones Crónicas</div>
               <div className="text-3xl font-semibold text-gray-900">
                 {patients.filter(p => p.chronicConditions.length > 0).length}
               </div>
               <div className="text-sm text-orange-600">Pacientes</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-sm text-gray-600 mb-2">Tipo de Sangre O+</div>
+              <div className="text-sm text-gray-700 mb-2">Tipo de Sangre O+</div>
               <div className="text-3xl font-semibold text-gray-900">
                 {patients.filter(p => p.bloodType === 'O+').length}
               </div>
@@ -283,7 +283,7 @@ export default function PacientesPage() {
             <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
               <div className="relative flex-1 max-w-lg">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
+                  <Search className="h-5 w-5 text-gray-500" />
                 </div>
                   <input
                     type="text"
@@ -367,18 +367,18 @@ export default function PacientesPage() {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm text-gray-900 flex items-center">
-                              <Mail className="w-4 h-4 mr-1 text-gray-400" />
+                              <Mail className="w-4 h-4 mr-1 text-gray-500" />
                               {patient.email}
                             </div>
                             <div className="text-sm text-gray-900 flex items-center">
-                              <Phone className="w-4 h-4 mr-1 text-gray-400" />
+                              <Phone className="w-4 h-4 mr-1 text-gray-500" />
                               {patient.phone}
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900 flex items-center">
-                            <Calendar className="w-4 h-4 mr-1 text-gray-400" />
+                            <Calendar className="w-4 h-4 mr-1 text-gray-500" />
                             {calculateAge(patient.dateOfBirth)} años
                           </div>
                         </td>
@@ -423,7 +423,7 @@ export default function PacientesPage() {
                             <div className="relative">
                               <button
                                 onClick={() => toggleDropdown(patient.id)}
-                                className="p-1 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
+                                className="p-1 rounded-full hover:bg-gray-100 text-gray-700 transition-colors"
                               >
                                 <MoreHorizontal className="w-5 h-5" />
                               </button>

@@ -52,7 +52,7 @@ const AuthenticatedHeader = ({ currentPage }: AuthenticatedHeaderProps) => {
   const getRoleColor = (role: string) => {
     switch (role) {
       case 'PLATFORM': return 'bg-purple-100 text-purple-800';
-      case 'PROVIDER': return 'bg-blue-100 text-blue-800';
+      case 'PROVIDER': return 'bg-teal-100 text-teal-800';
       case 'STAFF': return 'bg-green-100 text-green-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -129,7 +129,7 @@ const AuthenticatedHeader = ({ currentPage }: AuthenticatedHeaderProps) => {
             {user.role !== 'PLATFORM' && (
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/dashboard" className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-sm">M</span>
                   </div>
                   <span className="text-xl font-bold text-gray-900">MediGo Hub</span>
@@ -149,7 +149,7 @@ const AuthenticatedHeader = ({ currentPage }: AuthenticatedHeaderProps) => {
                       href={item.href}
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         isActive
-                          ? 'bg-blue-100 text-blue-700'
+                          ? 'bg-teal-100 text-teal-700'
                           : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                       }`}
                     >
@@ -197,7 +197,7 @@ const AuthenticatedHeader = ({ currentPage }: AuthenticatedHeaderProps) => {
                   aria-label="Menú de usuario"
                   tabIndex={0}
                 >
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
                     <span className="text-white text-sm font-medium">
                       {user.name.charAt(0).toUpperCase()}
                     </span>
@@ -269,7 +269,7 @@ const AuthenticatedHeader = ({ currentPage }: AuthenticatedHeaderProps) => {
                       </button>
                       <button
                         onClick={handleNotificationsClick}
-                        className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 transition-colors"
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-teal-600 hover:bg-teal-50 transition-colors"
                       >
                         <Bell className="w-4 h-4" />
                         <span>Ver Notificaciones ({getNotificationCount()})</span>

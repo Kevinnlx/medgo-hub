@@ -9,42 +9,42 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+          "border-transparent bg-primary-600 text-white hover:bg-primary-700",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
+          "border-transparent bg-red-600 text-white hover:bg-red-700",
+        outline: "text-black border-primary-200",
         success:
-          "border-transparent bg-green-500 text-white hover:bg-green-600",
+          "border-transparent bg-primary-500 text-white hover:bg-primary-600",
         warning:
-          "border-transparent bg-yellow-500 text-white hover:bg-yellow-600",
+          "border-transparent bg-accent-500 text-white hover:bg-accent-600",
         info:
-          "border-transparent bg-blue-500 text-white hover:bg-blue-600",
+          "border-transparent bg-primary-500 text-white hover:bg-primary-600",
         scheduled:
-          "border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         confirmed:
-          "border-transparent bg-green-100 text-green-800 hover:bg-green-200",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         "in-progress":
-          "border-transparent bg-yellow-100 text-yellow-800 hover:bg-yellow-200",
+          "border-transparent bg-accent-100 text-accent-800 hover:bg-accent-200",
         completed:
-          "border-transparent bg-emerald-100 text-emerald-800 hover:bg-emerald-200",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         cancelled:
           "border-transparent bg-red-100 text-red-800 hover:bg-red-200",
         pending:
-          "border-transparent bg-orange-100 text-orange-800 hover:bg-orange-200",
+          "border-transparent bg-accent-100 text-accent-800 hover:bg-accent-200",
         active:
-          "border-transparent bg-green-100 text-green-800 hover:bg-green-200",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         inactive:
           "border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200",
         urgent:
           "border-transparent bg-red-500 text-white hover:bg-red-600 animate-pulse",
         normal:
-          "border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200",
+          "border-transparent bg-primary-100 text-primary-800 hover:bg-primary-200",
         critical:
           "border-transparent bg-red-500 text-white hover:bg-red-600",
         online:
-          "border-transparent bg-green-500 text-white hover:bg-green-600",
+          "border-transparent bg-primary-500 text-white hover:bg-primary-600",
         offline:
           "border-transparent bg-gray-500 text-white hover:bg-gray-600"
       }

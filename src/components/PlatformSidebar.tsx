@@ -82,10 +82,10 @@ const getNavigationCategories = (navigation: any[]) => {
 
 // Accesos rápidos
 const quickActions = [
-  { title: 'Nueva Cita', href: '/dashboard/consultas', icon: Calendar, color: 'bg-blue-500' },
-  { title: 'Nuevo Paciente', href: '/dashboard/pacientes', icon: Users, color: 'bg-green-500' },
-  { title: 'Reportes', href: '/dashboard/reportes', icon: BarChart3, color: 'bg-purple-500' },
-  { title: 'Configuración', href: '/dashboard/configuracion', icon: Settings, color: 'bg-gray-500' }
+  { title: 'Nueva Cita', href: '/dashboard/consultas', icon: Calendar, color: 'bg-primary-500' },
+  { title: 'Nuevo Paciente', href: '/dashboard/pacientes', icon: Users, color: 'bg-primary-600' },
+  { title: 'Reportes', href: '/dashboard/reportes', icon: BarChart3, color: 'bg-accent-500' },
+  { title: 'Configuración', href: '/dashboard/configuracion', icon: Settings, color: 'bg-accent-600' }
 ];
 
 const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
@@ -148,7 +148,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         onClick={toggleMobile}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg border border-gray-200"
       >
-        {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {isMobileOpen ? <X className="w-5 h-5 text-black" /> : <Menu className="w-5 h-5 text-black" />}
       </button>
 
       {/* Mobile overlay */}
@@ -161,7 +161,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
 
       {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 h-full bg-white border-r border-gray-200 shadow-lg z-40 transition-all duration-300
+        fixed left-0 top-0 h-full bg-white border-r border-gray-200 shadow-lg z-40 transition-all duration-300 overflow-hidden
         ${isCollapsed ? 'w-16' : 'w-72'}
         ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
@@ -169,11 +169,11 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">M</span>
               </div>
               <div>
-                <span className="text-lg font-bold text-gray-900">MediGo Hub</span>
+                <span className="text-lg font-bold text-black">MediGo Hub</span>
                 <p className="text-xs text-gray-500">Sistema de Gestión Médica</p>
               </div>
             </div>
@@ -194,14 +194,14 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         {/* User info */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-white text-sm font-medium">
                 {user.name.charAt(0).toUpperCase()}
               </span>
             </div>
             {!isCollapsed && (
               <div>
-                <p className="text-sm font-medium text-gray-900">{user.display_name || user.name}</p>
+                <p className="text-sm font-medium text-black">{user.display_name || user.name}</p>
                 <p className="text-xs text-gray-500">
                   Administrador de Plataforma
                 </p>
@@ -220,7 +220,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                 placeholder="Buscar módulo..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-gray-50"
+                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-gray-50 text-black"
               />
             </div>
           </div>
@@ -230,7 +230,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         {!isCollapsed && !searchQuery.trim() && (
           <div className="p-4 border-b border-gray-200">
             <div className="flex items-center space-x-2 mb-3">
-              <Zap className="w-4 h-4 text-gray-600" />
+              <Zap className="w-4 h-4 text-teal-600" />
               <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
                 Accesos Rápidos
               </span>
@@ -244,10 +244,10 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                     href={action.href}
                     className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <div className={`w-8 h-8 ${action.color} rounded-lg flex items-center justify-center mb-1 group-hover:scale-110 transition-transform`}>
+                    <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                       <Icon className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-xs text-gray-600 text-center leading-tight">{action.title}</span>
+                    <span className="text-xs text-black text-center leading-tight">{action.title}</span>
                   </Link>
                 );
               })}
@@ -256,7 +256,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         )}
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto">
+        <nav className="flex-1 overflow-y-auto max-h-[calc(100vh-400px)]">
           <div className="p-2">
             {/* Mostrar mensaje de búsqueda si no hay resultados */}
             {searchQuery.trim() && filteredCategories.length === 0 && (
@@ -278,12 +278,12 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                     className={`
                       w-full flex items-center justify-between p-2 rounded-lg text-sm font-medium transition-colors
                       ${isCollapsed ? 'justify-center' : ''}
-                      hover:bg-gray-50 text-gray-700
+                      hover:bg-gray-50 text-black
                     `}
                     title={isCollapsed ? category.title : ''}
                   >
                     <div className="flex items-center space-x-2">
-                      <CategoryIcon className="w-4 h-4 text-gray-600" />
+                      <CategoryIcon className="w-4 h-4 text-teal-600" />
                       {!isCollapsed && (
                         <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
                           {category.title}
@@ -292,7 +292,7 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                     </div>
                     {!isCollapsed && !searchQuery.trim() && (
                       <div className="flex items-center space-x-1">
-                        <span className="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full">
+                        <span className="text-xs bg-teal-100 text-teal-700 px-1.5 py-0.5 rounded-full">
                           {category.items.length}
                         </span>
                         {isCatCollapsed ? (
@@ -318,8 +318,8 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                             className={`
                               flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-colors
                               ${isActive
-                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm'
-                                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                                ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-sm'
+                                : 'text-black hover:text-black hover:bg-teal-50'
                               }
                             `}
                             title={item.title}
@@ -351,8 +351,8 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
                             className={`
                               flex items-center justify-center p-2 rounded-lg text-sm transition-colors
                               ${isActive
-                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm'
-                                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                                ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-sm'
+                                : 'text-black hover:text-black hover:bg-teal-50'
                               }
                             `}
                             title={item.title}
@@ -373,16 +373,16 @@ const PlatformSidebar = ({ currentPage }: PlatformSidebarProps) => {
         <div className="p-4 border-t border-gray-200">
           {!isCollapsed ? (
             <div className="text-xs text-gray-500 text-center space-y-1">
-              <p className="font-medium">MediGo Hub v1.2.4</p>
+              <p className="font-medium text-black">MediGo Hub v1.2.4</p>
               <p>© 2024 Todos los derechos reservados</p>
-              <div className="flex items-center justify-center space-x-1 text-cyan-600">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="flex items-center justify-center space-x-1 text-teal-600">
+                <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
                 <span>Sistema Activo</span>
               </div>
             </div>
           ) : (
             <div className="flex justify-center">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
             </div>
           )}
         </div>

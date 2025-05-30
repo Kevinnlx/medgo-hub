@@ -5,6 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #10b981;
+  --primary-hover: #059669;
+  --primary-light: #d1fae5;
+  --accent: #14b8a6;
+  --accent-hover: #0d9488;
+  --accent-light: #ccfbf1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,4 +24,29 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom utility classes for brand colors */
+.bg-brand-primary {
+  background-color: var(--primary);
+}
+
+.bg-brand-primary-hover:hover {
+  background-color: var(--primary-hover);
+}
+
+.bg-brand-accent {
+  background-color: var(--accent);
+}
+
+.text-brand-primary {
+  color: var(--primary);
+}
+
+.text-brand-accent {
+  color: var(--accent);
+}
+
+.border-brand-primary {
+  border-color: var(--primary);
 }

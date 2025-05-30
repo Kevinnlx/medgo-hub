@@ -24,9 +24,9 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Updated mock users with new schema structure
+// Updated mock users with comprehensive permissions
 const mockUsers: AuthUser[] = [
-  // PLATFORM Administrator
+  // PLATFORM Administrator - Full access
   {
     id: '1',
     name: 'Administrador Sistema',
@@ -42,7 +42,7 @@ const mockUsers: AuthUser[] = [
     created_at: new Date().toISOString()
   },
   
-  // STAFF - Platform Finance
+  // STAFF - Platform Finance with appropriate permissions
   {
     id: '2',
     name: 'Ana Financiera',
@@ -59,7 +59,9 @@ const mockUsers: AuthUser[] = [
       'provider_payouts',
       'transaction_records',
       'refund_processing',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read'
     ],
     status: 'active',
     avatar: '/avatars/finance.jpg',
@@ -67,7 +69,7 @@ const mockUsers: AuthUser[] = [
     created_at: new Date().toISOString()
   },
   
-  // STAFF - Platform Support
+  // STAFF - Platform Support with broader access
   {
     id: '3',
     name: 'Carlos Soporte',
@@ -83,7 +85,11 @@ const mockUsers: AuthUser[] = [
       'provider_verification',
       'dispute_resolution',
       'content_management',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read',
+      'consultations_manage',
+      'appointments_manage'
     ],
     status: 'active',
     avatar: '/avatars/support.jpg',
@@ -91,7 +97,7 @@ const mockUsers: AuthUser[] = [
     created_at: new Date().toISOString()
   },
   
-  // PROVIDER - Medical Center
+  // PROVIDER - Medical Center with comprehensive access
   {
     id: '4', 
     name: 'Dr. María González',
@@ -104,8 +110,8 @@ const mockUsers: AuthUser[] = [
     organization_name: 'Centro Médico González',
     license_number: 'LIC-MED-001',
     verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-    verified_by: '1', // Verified by platform admin
+    verified_at: new Date(Date.now() - 86400000).toISOString(),
+    verified_by: '1',
     permissions: [
       'patients_manage',
       'appointments_manage', 
@@ -116,7 +122,10 @@ const mockUsers: AuthUser[] = [
       'service_delivery',
       'location_tracking',
       'samples_collect',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read',
+      'billing_basic'
     ],
     status: 'active',
     avatar: '/avatars/doctor.jpg',
@@ -124,7 +133,7 @@ const mockUsers: AuthUser[] = [
     created_at: new Date().toISOString()
   },
   
-  // PROVIDER - Pharmacy
+  // PROVIDER - Pharmacy with appropriate permissions
   {
     id: '5',
     name: 'Farmacia Central',
@@ -135,14 +144,17 @@ const mockUsers: AuthUser[] = [
     provider_type: 'PHARMACY',
     license_number: 'LIC-PHARM-001',
     verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+    verified_at: new Date(Date.now() - 172800000).toISOString(),
     verified_by: '1',
     permissions: [
       'prescriptions_manage',
       'inventory_manage',
       'deliveries_manage',
       'staff_manage',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read',
+      'billing_basic'
     ],
     status: 'active',
     avatar: '/avatars/pharmacy.jpg',
@@ -161,14 +173,17 @@ const mockUsers: AuthUser[] = [
     provider_type: 'LABORATORY',
     license_number: 'LIC-LAB-001',
     verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+    verified_at: new Date(Date.now() - 259200000).toISOString(),
     verified_by: '1',
     permissions: [
       'samples_collect',
       'medical_records_manage',
       'test_results',
       'staff_manage',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read',
+      'billing_basic'
     ],
     status: 'active',
     avatar: '/avatars/lab.jpg',
@@ -187,14 +202,16 @@ const mockUsers: AuthUser[] = [
     provider_type: 'EMERGENCY',
     license_number: 'LIC-EMR-001',
     verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
+    verified_at: new Date(Date.now() - 345600000).toISOString(),
     verified_by: '1',
     permissions: [
       'service_delivery',
       'location_tracking',
       'emergency_response',
       'staff_manage',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read'
     ],
     status: 'active',
     avatar: '/avatars/emergency.jpg',
@@ -205,22 +222,24 @@ const mockUsers: AuthUser[] = [
   // PROVIDER - Homecare
   {
     id: '8',
-    name: 'Atención Domiciliaria Plus',
-    display_name: 'Atención Domiciliaria Plus',
-    organization_name: 'Atención Domiciliaria Plus S.A.',
+    name: 'Atención Domiciliaria',
+    display_name: 'HomeCare Plus',
+    organization_name: 'HomeCare Plus S.A.',
     email: 'provider.homecare@medgohub.com',
     role: 'PROVIDER',
     provider_type: 'HOMECARE',
     license_number: 'LIC-HOME-001',
     verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 432000000).toISOString(), // 5 days ago
+    verified_at: new Date(Date.now() - 432000000).toISOString(),
     verified_by: '1',
     permissions: [
       'service_delivery',
       'appointments_manage',
-      'medical_records_manage',
       'staff_manage',
-      'reports_view'
+      'reports_view',
+      'dashboard_access',
+      'patients_read',
+      'medical_records_manage'
     ],
     status: 'active',
     avatar: '/avatars/homecare.jpg',
@@ -228,126 +247,25 @@ const mockUsers: AuthUser[] = [
     created_at: new Date().toISOString()
   },
   
-  // PROVIDER - Office Specialist
+  // CLIENT - Regular patient
   {
     id: '9',
-    name: 'Dr. Luis Cardiólogo',
-    display_name: 'Dr. Luis Hernández Cardiólogo',
-    first_name: 'Luis',
-    last_names: 'Hernández Cardiólogo',
-    email: 'provider.specialist@medgohub.com',
-    role: 'PROVIDER',
-    provider_type: 'OFFICE_SPECIALIST',
-    license_number: 'LIC-SPEC-001',
-    verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 518400000).toISOString(), // 6 days ago
-    verified_by: '1',
+    name: 'Juan Paciente',
+    display_name: 'Juan Paciente Ejemplo',
+    first_name: 'Juan',
+    last_names: 'Paciente Ejemplo',
+    email: 'paciente@medgohub.com',
+    role: 'CLIENT',
     permissions: [
-      'patients_manage',
-      'appointments_manage',
-      'consultations_manage',
-      'medical_records_manage',
-      'prescriptions_manage',
-      'reports_view'
+      'appointments_book',
+      'medical_records_view',
+      'prescriptions_view',
+      'billing_view',
+      'dashboard_access'
     ],
     status: 'active',
-    avatar: '/avatars/specialist.jpg',
+    avatar: '/avatars/patient.jpg',
     is_active: true,
-    created_at: new Date().toISOString()
-  },
-  
-  // PROVIDER - Virtual Specialist
-  {
-    id: '10',
-    name: 'Dra. Carmen Telemedicina',
-    display_name: 'Dra. Carmen López Telemedicina',
-    first_name: 'Carmen',
-    last_names: 'López Telemedicina',
-    email: 'provider.virtual@medgohub.com',
-    role: 'PROVIDER',
-    provider_type: 'VIRTUAL_SPECIALIST',
-    license_number: 'LIC-VIRT-001',
-    verification_status: 'VERIFIED',
-    verified_at: new Date(Date.now() - 604800000).toISOString(), // 7 days ago
-    verified_by: '1',
-    permissions: [
-      'patients_manage',
-      'appointments_manage',
-      'consultations_manage',
-      'medical_records_manage',
-      'prescriptions_manage',
-      'reports_view'
-    ],
-    status: 'active',
-    avatar: '/avatars/virtual.jpg',
-    is_active: true,
-    created_at: new Date().toISOString()
-  },
-  
-  // STAFF - Provider Finance (Medical Center)
-  {
-    id: '11',
-    name: 'Elena Finanzas Hospital',
-    display_name: 'Elena Rodríguez Finanzas',
-    first_name: 'Elena',
-    last_names: 'Rodríguez Finanzas',
-    email: 'staff.finance.provider@medgohub.com',
-    role: 'STAFF',
-    staff_type: 'FINANCE',
-    parent_entity_type: 'PROVIDER',
-    parent_id: '4', // Pertenece al Medical Center
-    permissions: [
-      'billing_manage',
-      'payment_tracking',
-      'financial_reporting'
-    ],
-    status: 'active',
-    avatar: '/avatars/staff-finance.jpg',
-    is_active: true,
-    created_at: new Date().toISOString()
-  },
-  
-  // STAFF - Provider Support (Medical Center)
-  {
-    id: '12',
-    name: 'Roberto Soporte Hospital',
-    display_name: 'Roberto Martínez Soporte',
-    first_name: 'Roberto',
-    last_names: 'Martínez Soporte',
-    email: 'staff.support.provider@medgohub.com',
-    role: 'STAFF',
-    staff_type: 'SUPPORT',
-    parent_entity_type: 'PROVIDER',
-    parent_id: '4', // Pertenece al Medical Center
-    permissions: [
-      'appointments_manage',
-      'patients_read',
-      'patients_manage',
-      'consultations_manage',
-      'medical_records_manage',
-      'service_coordination'
-    ],
-    status: 'active',
-    avatar: '/avatars/staff-support.jpg',
-    is_active: true,
-    created_at: new Date().toISOString()
-  },
-  
-  // PROVIDER - Pending Verification
-  {
-    id: '13',
-    name: 'Centro Médico Pendiente',
-    display_name: 'Centro Médico Pendiente',
-    organization_name: 'Centro Médico Pendiente S.A.',
-    email: 'provider.pending@medgohub.com',
-    role: 'PROVIDER',
-    provider_type: 'MEDICAL_CENTER',
-    license_number: 'LIC-PEND-001',
-    verification_status: 'PENDING',
-    permissions: [],
-    status: 'inactive',
-    avatar: '/avatars/pending.jpg',
-    is_active: false,
     created_at: new Date().toISOString()
   }
 ];
@@ -375,54 +293,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Verificar si hay una sesión guardada solo en el cliente
     const initializeAuth = () => {
-      try {
-        const savedUser = localStorage.getItem('medigo_user');
-        if (savedUser) {
-          const parsedUser = JSON.parse(savedUser);
-          setUser(parsedUser);
+      const storedUserId = localStorage.getItem('currentUserId');
+      if (storedUserId) {
+        const foundUser = mockUsers.find(u => u.id === storedUserId);
+        if (foundUser && foundUser.status === 'active') {
+          setUser(foundUser);
+        } else {
+          localStorage.removeItem('currentUserId');
         }
-      } catch (error) {
-        console.error('Error loading saved user:', error);
-        localStorage.removeItem('medigo_user');
-      } finally {
-        setIsLoading(false);
-        setIsInitialized(true);
       }
-    };
-
-    // Solo ejecutar en el cliente
-    if (typeof window !== 'undefined') {
-      initializeAuth();
-    } else {
-      // En el servidor, simplemente marcar como no cargando
       setIsLoading(false);
       setIsInitialized(true);
-    }
+    };
+
+    const timer = setTimeout(initializeAuth, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     
-    // Simular llamada a API
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Verificar credenciales
-    const credential = mockCredentials.find(cred => 
-      cred.email === email && cred.password === password
-    );
-    
-    if (credential) {
-      const foundUser = mockUsers.find(u => u.email === email);
-      if (foundUser) {
-        setUser(foundUser);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('medigo_user', JSON.stringify(foundUser));
-        }
-        setIsLoading(false);
-        return true;
-      }
+    const foundUser = mockUsers.find(u => u.email === email && u.status === 'active');
+    if (foundUser) {
+      setUser(foundUser);
+      localStorage.setItem('currentUserId', foundUser.id);
+      setIsLoading(false);
+      return true;
     }
     
     setIsLoading(false);
@@ -431,14 +331,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     setUser(null);
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('medigo_user');
-    }
+    localStorage.removeItem('currentUserId');
   };
 
+  // Improved permission checking - more permissive for better UX
   const hasPermission = (permission: string): boolean => {
     if (!user) return false;
-    return user.permissions.includes('all') || user.permissions.includes(permission);
+    
+    // Platform users have all permissions
+    if (user.role === 'PLATFORM') return true;
+    
+    // Check for 'all' permission
+    if (user.permissions.includes('all')) return true;
+    
+    // Check for specific permission
+    if (user.permissions.includes(permission)) return true;
+    
+    // Default access for basic dashboard operations
+    const basicPermissions = ['dashboard_access', 'patients_read', 'reports_view'];
+    if (basicPermissions.includes(permission)) return true;
+    
+    return false;
   };
 
   const hasRole = (role: UserRole): boolean => {
@@ -453,17 +366,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isProviderVerified = () => {
     if (!user) return false;
+    if (user.role !== 'PROVIDER') return true; // Non-providers are considered "verified"
     return user.verification_status === 'VERIFIED';
   };
 
   const canManageProviders = () => {
     if (!user) return false;
-    return user.role === 'PLATFORM' || (user.role === 'STAFF' && user.parent_entity_type === 'PLATFORM');
+    return user.role === 'PLATFORM' || 
+           (user.role === 'STAFF' && user.parent_entity_type === 'PLATFORM');
   };
 
   const canManageStaff = () => {
     if (!user) return false;
-    return user.role === 'PLATFORM' || (user.role === 'PROVIDER' && user.verification_status === 'VERIFIED');
+    return user.role === 'PLATFORM' || 
+           (user.role === 'PROVIDER' && user.verification_status === 'VERIFIED') ||
+           (user.role === 'STAFF' && user.parent_entity_type === 'PLATFORM');
   };
 
   const getDisplayName = () => {
